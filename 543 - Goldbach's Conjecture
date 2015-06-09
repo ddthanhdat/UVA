@@ -1,0 +1,45 @@
+543 - Goldbach's Conjecture
+// Thanh Dat
+Note: 
+-  n = a + b, where a and b are odd primes. 
+a và b là 2 số nguyên tố lẻ.
+
+Bài này do số nhỏ nên ta lợi dụng chỉ số mảng, sàng nguyên tố.
+Code:
+#include <iostream>
+#include <algorithm>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#define ll long long
+#define maxN 1000000
+using namespace std;
+bool isPrime[maxN+5];
+void erathosthenes(){
+	for(ll i=2;i<=maxN;i++)
+		isPrime[i]=true;
+	for(ll i=2;i<=maxN;i++)
+		if(isPrime[i]){
+			for(ll j=i;i*j<=maxN;j++)
+				isPrime[i*j]=false;
+		}
+		isPrime[2] = isPrime[1] = 0;
+}
+int main(){
+	erathosthenes();
+	ll n;
+	while(cin >> n){
+		if(!n) break;
+		ll a,b;
+		for(ll i=3;i<=n;i++){
+			if(isPrime[i] && isPrime[n-i]){
+				a=i; b=n-i;
+				break;
+			}
+		}
+		if(n!=a+b) cout << "Goldbach's conjecture is wrong." <<endl;
+		else
+		cout << n << " = " << a << " + "  << b << endl;
+	}
+
+}
