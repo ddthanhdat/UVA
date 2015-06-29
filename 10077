@@ -1,0 +1,36 @@
+#include <iostream>
+#include <algorithm>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <vector>
+#include <stack>
+#include <map>
+#define ll long long
+using namespace std;
+ll m,n;
+void xuly(ll a, ll b, ll c, ll d){
+	if(a+c==m && b+d==n) return;
+	else
+	if((float)m/n>(float)(a+c)/(b+d)){
+		cout << "R";
+		xuly(a+c,b+d,c,d);
+	}else{
+		cout << "L";
+		xuly(a,b,c+a,d+b);
+	}
+}
+
+
+int main(){
+//	freopen("ip.txt","r",stdin);
+	
+	while(cin >> m >>n){
+		if(m==1 && n==1) break;
+		
+		xuly(0,1,1,0);
+		cout << endl;
+	}
+	
+	
+}
